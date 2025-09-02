@@ -6,12 +6,12 @@ integration testing.
 
 ## Features
 
-- _TypeScript first_ – full type safety with Zod validation support.
-- _Transport layer_ – timeout, retries with backoff + jitter, typed error classes.
-- _LRU caching_ – in-memory, pluggable, with optional TTL.
-- _Pagination helpers_ – iterate across paginated Pokémon results.
-- _Optional runtime validation_ – Zod schemas ensure responses match the contract.
-- _Tested with Vitest + MSW_ – both unit tests and live “smoke” tests against PokeAPI.
+- **TypeScript first** – full type safety with Zod validation support.
+- **Transport layer** – timeout, retries with backoff + jitter, typed error classes.
+- **LRU caching** – in-memory, pluggable, with optional TTL.
+- **Pagination helpers** – iterate across paginated Pokémon results.
+- **Optional runtime validation** – Zod schemas ensure responses match the contract.
+- **Tested with Vitest + MSW** – both unit tests and live “smoke” tests against PokeAPI.
 
 ## Installation
 
@@ -60,6 +60,9 @@ Run only live smoke tests (queries the real PokeAPI):
 ```bash
 yarn test:live
 ```
+
+- Design note: The default test suite is MSW-mocked for speed/stability. The live test is opt-in via `LIVE_TESTS=true`
+  to avoid flakiness in CI.
 
 Coverage reports are written to coverage/.
 
