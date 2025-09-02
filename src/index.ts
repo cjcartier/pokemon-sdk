@@ -38,6 +38,19 @@ export class PokeClient {
       this.validate,
     );
   }
+
+  async getPokemonWithGeneration(idOrName: string | number) {
+    const pokemon = await this.pokemon.getPokemon(idOrName),
+      speciesUrl = pokemon.species?.url;
+    if (!speciesUrl) return { pokemon, generation: undefined };
+
+    const species = await this.transport.get<{ generation?: { url?: string } }>(speciesUrl),
+      genUrl = species.generation?.url,
+      genIdOrName = genUrl?.split('/').filter(Boolean).pop(),
+      generation = genIdOrName ? await this.generation.getGeneration(genIdOrName) : undefined;
+
+    return { pokemon, generation };
+  }
 }
 
 export type { Pokemon, Generation, Paginated, NamedAPIResource };

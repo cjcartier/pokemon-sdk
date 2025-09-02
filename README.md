@@ -101,6 +101,16 @@ Coverage reports are written to coverage/.
 - Zod for schema validation.
 - MSW for API mocking in tests.
 
+7. Abstractions / Amalgamated Calls
+
+Beyond 1:1 endpoint bindings, the SDK includes:
+
+- `client.getPokemonWithGeneration(idOrName)` — fetches a Pokémon, follows its species to determine the generation, and
+  returns both objects together.
+- `pokemon.iteratePokemon({ pageSize })` — an async generator that streams results across paginated pages.
+
+These improve developer ergonomics compared to raw API usage.
+
 ## Project Structure
 
 ```bash
